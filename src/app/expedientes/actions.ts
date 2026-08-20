@@ -18,8 +18,18 @@ const editSchema = z.object({
     .trim()
     .refine((value) => !value || /^\d{7,12}$/.test(value), "El teléfono debe contener entre 7 y 12 dígitos."),
   tipo_impuesto: z.enum(["Predial unificado", "Industria y comercio", "Vehículos automotores"]),
-  vigencia_fiscal: z.coerce.number().int().min(1900).max(2026),
-  valor_deuda: z.coerce.number().int().positive("La deuda debe ser mayor que cero."),
+  vigencia_fiscal: z
+    .string()
+    .trim()
+    .regex(/^\d+$/, "La vigencia fiscal debe contener solo dígitos.")
+    .transform(Number)
+    .pipe(z.number().int().min(1900).max(2026)),
+  valor_deuda: z
+    .string()
+    .trim()
+    .regex(/^\d+$/, "El valor de la deuda debe contener solo dígitos.")
+    .transform(Number)
+    .pipe(z.number().int().positive("La deuda debe ser mayor que cero.")),
   fecha_mandamiento: z.iso.date(),
   estado_proceso: z.enum(["Persuasivo", "Coactivo", "Archivado", "Cerrado", "Sin definir"]),
 });
