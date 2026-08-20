@@ -38,9 +38,9 @@ Todo funciona con los planes gratuitos solicitados.
 
 ### Requisitos
 
-- Node.js 20.9 o superior.
+- Node.js 24.x.
 - pnpm 11 o superior.
-- Python 3.11 o superior, solo si se quiere regenerar la depuración.
+- Python 3.11 o superior, necesario únicamente para analizar o regenerar los datos desde un CSV.
 - Cuenta gratuita de Supabase.
 
 ### Aplicación local
@@ -82,6 +82,98 @@ python scripts/transform_csv.py /ruta/expedientes_cobro_chia.csv --output-dir da
 pnpm test:data
 ```
 
+### Despliegue en Vercel
+
+La aplicación puede desplegarse directamente desde este repositorio mediante la integración Git de Vercel.
+
+1. Importar el repositorio en Vercel.
+2. Seleccionar **Next.js** como framework. Vercel normalmente lo detecta automáticamente.
+3. Configurar las siguientes variables de entorno para el ambiente de producción:
+
+```dotenv
+NEXT_PUBLIC_SUPABASE_URL=https://<project-ref>.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
+```
+
+4. Configurar `main` como rama de producción.
+5. Ejecutar el despliegue.
+
+La aplicación publicada consulta directamente los datos almacenados en Supabase. Por lo tanto, una actualización de los registros en la base de datos no requiere un nuevo despliegue de Vercel, salvo que también haya cambios en el código o en los artefactos locales utilizados como fallback.
+
+Después del despliegue se recomienda verificar al menos las siguientes rutas:
+
+```text
+/
+/expedientes
+/reportes
+/calidad-datos
+```
+
+### Actualización de datos desde un nuevo CSV
+
+Cuando se reciba una nueva versión completa del archivo fuente, el pipeline puede ejecutarse nuevamente sin modificar manualmente las reglas de transformación.
+
+Primero se genera el perfil de calidad:
+
+```bash
+python scripts/analyze_csv.py /ruta/nuevo_archivo.csv --output data/quality_report.json
+```
+
+Después se ejecuta la transformación:
+
+```bash
+python scripts/transform_csv.py /ruta/nuevo_archivo.csv --output-dir data/processed --seed supabase/seed.sql
+```
+
+El proceso regenera:
+
+```text
+data/quality_report.json
+data/processed/expedientes.json
+data/processed/rejections.json
+data/processed/summary.json
+supabase/seed.sql
+```
+
+Antes de cargar los nuevos datos se recomienda ejecutar:
+
+```bash
+pnpm test:data
+pnpm typecheck
+pnpm lint
+pnpm build
+```
+
+Si las validaciones son satisfactorias, el `supabase/seed.sql` generado puede ejecutarse sobre el proyecto Supabase correspondiente.
+
+La aplicación desplegada en Vercel consulta Supabase directamente, por lo que los nuevos datos estarán disponibles en la aplicación una vez actualizada la base de datos.
+
+### Estrategia de carga
+
+> **Importante:** el pipeline implementado actualmente utiliza una estrategia de **reemplazo completo (`full refresh`)**, no una carga incremental.
+
+Cada CSV procesado debe representar la fotografía completa del conjunto de datos que se desea mantener en la aplicación.
+
+El `seed.sql` generado elimina la carga anterior de las tablas operativas antes de insertar los registros provenientes del nuevo archivo procesado.
+
+Por lo tanto:
+
+```text
+CSV completo actualizado
+        ↓
+Transformación
+        ↓
+Validación
+        ↓
+Reemplazo de carga anterior
+        ↓
+Nueva versión de los datos en Supabase
+```
+
+No debe utilizarse directamente un archivo que contenga únicamente registros nuevos o incrementales, ya que los registros existentes que no estén presentes en dicho CSV dejarían de formar parte de la carga.
+
+Si en el futuro la fuente entrega archivos incrementales, será necesario implementar una estrategia diferente, por ejemplo `UPSERT`, control de versiones o procesamiento basado en identificadores y fechas de actualización.
+
 ### Verificaciones
 
 ```bash
@@ -96,6 +188,19 @@ También existe una suite Python más detallada:
 ```bash
 python -m unittest discover -s tests -p "test_*.py"
 ```
+
+### Verificación operativa
+
+Una instalación o actualización se considera satisfactoria cuando:
+
+- `pnpm test:data` finaliza correctamente.
+- `pnpm typecheck` no reporta errores.
+- `pnpm lint` no reporta errores bloqueantes.
+- `pnpm build` genera correctamente el build de producción.
+- Supabase contiene los registros esperados en `contribuyentes`, `expedientes`, `import_runs` e `import_rejections`.
+- La aplicación indica **“Supabase conectado”** como fuente de datos.
+- El total de expedientes y rechazos mostrado en la aplicación coincide con `data/processed/summary.json`.
+- Las rutas principales `/`, `/expedientes`, `/reportes` y `/calidad-datos` cargan correctamente.
 
 ## Estructura de datos
 
