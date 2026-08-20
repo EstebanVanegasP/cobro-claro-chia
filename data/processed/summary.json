@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-08-20T06:10:00+00:00",
+  "source_rows": 280,
+  "accepted_rows": 247,
+  "rejected_rows": 33,
+  "flagged_rows": 22,
+  "contributors": 238,
+  "debt_total": 1316802864,
+  "missing_optional": {
+    "direccion_notificacion": 73,
+    "telefono": 33
+  },
+  "rejection_reason_counts": {
+    "Documento ausente o con longitud inválida": 2,
+    "Fecha de mandamiento ausente o imposible": 4,
+    "Fila duplicada exacta; se conservó la primera aparición": 9,
+    "Identificador duplicado con datos contradictorios": 9,
+    "Valor de deuda ausente, no numérico o no positivo": 4,
+    "Vigencia fiscal inválida o futura": 5
+  }
+}

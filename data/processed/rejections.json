@@ -1,0 +1,233 @@
+[
+  {
+    "source_row": 12,
+    "id_expediente": "EXP-FEC-003",
+    "reasons": [
+      "Fecha de mandamiento ausente o imposible"
+    ]
+  },
+  {
+    "source_row": 49,
+    "id_expediente": "EXP-2024-0078",
+    "reasons": [
+      "Fila duplicada exacta; se conservó la primera aparición"
+    ]
+  },
+  {
+    "source_row": 55,
+    "id_expediente": "EXP-FEC-002",
+    "reasons": [
+      "Fecha de mandamiento ausente o imposible"
+    ]
+  },
+  {
+    "source_row": 56,
+    "id_expediente": "EXP-2020-0027",
+    "reasons": [
+      "Identificador duplicado con datos contradictorios"
+    ]
+  },
+  {
+    "source_row": 65,
+    "id_expediente": "EXP-2020-0027",
+    "reasons": [
+      "Identificador duplicado con datos contradictorios"
+    ]
+  },
+  {
+    "source_row": 80,
+    "id_expediente": "EXP-FUT-000",
+    "reasons": [
+      "Vigencia fiscal inválida o futura"
+    ]
+  },
+  {
+    "source_row": 82,
+    "id_expediente": "EXP-2022-0100",
+    "reasons": [
+      "Fila duplicada exacta; se conservó la primera aparición"
+    ]
+  },
+  {
+    "source_row": 85,
+    "id_expediente": "EXP-2020-0014",
+    "reasons": [
+      "Identificador duplicado con datos contradictorios"
+    ]
+  },
+  {
+    "source_row": 95,
+    "id_expediente": "EXP-2024-0040",
+    "reasons": [
+      "Identificador duplicado con datos contradictorios"
+    ]
+  },
+  {
+    "source_row": 100,
+    "id_expediente": "EXP-2019-0034",
+    "reasons": [
+      "Fila duplicada exacta; se conservó la primera aparición"
+    ]
+  },
+  {
+    "source_row": 107,
+    "id_expediente": "EXP-VAL-000",
+    "reasons": [
+      "Valor de deuda ausente, no numérico o no positivo"
+    ]
+  },
+  {
+    "source_row": 110,
+    "id_expediente": "EXP-2019-0001",
+    "reasons": [
+      "Identificador duplicado con datos contradictorios"
+    ]
+  },
+  {
+    "source_row": 116,
+    "id_expediente": "EXP-DOC-000",
+    "reasons": [
+      "Documento ausente o con longitud inválida"
+    ]
+  },
+  {
+    "source_row": 122,
+    "id_expediente": "EXP-FUT-004",
+    "reasons": [
+      "Vigencia fiscal inválida o futura"
+    ]
+  },
+  {
+    "source_row": 135,
+    "id_expediente": "EXP-2024-0040",
+    "reasons": [
+      "Identificador duplicado con datos contradictorios"
+    ]
+  },
+  {
+    "source_row": 142,
+    "id_expediente": "EXP-VAL-002",
+    "reasons": [
+      "Valor de deuda ausente, no numérico o no positivo"
+    ]
+  },
+  {
+    "source_row": 154,
+    "id_expediente": "EXP-FUT-003",
+    "reasons": [
+      "Vigencia fiscal inválida o futura"
+    ]
+  },
+  {
+    "source_row": 157,
+    "id_expediente": "EXP-FUT-002",
+    "reasons": [
+      "Vigencia fiscal inválida o futura"
+    ]
+  },
+  {
+    "source_row": 170,
+    "id_expediente": "EXP-2022-0045",
+    "reasons": [
+      "Fila duplicada exacta; se conservó la primera aparición"
+    ]
+  },
+  {
+    "source_row": 180,
+    "id_expediente": "EXP-2020-0012",
+    "reasons": [
+      "Fila duplicada exacta; se conservó la primera aparición"
+    ]
+  },
+  {
+    "source_row": 192,
+    "id_expediente": "EXP-DOC-002",
+    "reasons": [
+      "Documento ausente o con longitud inválida"
+    ]
+  },
+  {
+    "source_row": 205,
+    "id_expediente": "EXP-2019-0067",
+    "reasons": [
+      "Fila duplicada exacta; se conservó la primera aparición"
+    ]
+  },
+  {
+    "source_row": 209,
+    "id_expediente": "EXP-2019-0001",
+    "reasons": [
+      "Identificador duplicado con datos contradictorios"
+    ]
+  },
+  {
+    "source_row": 220,
+    "id_expediente": "EXP-2020-0056",
+    "reasons": [
+      "Fila duplicada exacta; se conservó la primera aparición"
+    ]
+  },
+  {
+    "source_row": 225,
+    "id_expediente": "EXP-FEC-000",
+    "reasons": [
+      "Fecha de mandamiento ausente o imposible"
+    ]
+  },
+  {
+    "source_row": 228,
+    "id_expediente": "EXP-2020-0014",
+    "reasons": [
+      "Identificador duplicado con datos contradictorios"
+    ]
+  },
+  {
+    "source_row": 229,
+    "id_expediente": "EXP-2023-0023",
+    "reasons": [
+      "Fila duplicada exacta; se conservó la primera aparición"
+    ]
+  },
+  {
+    "source_row": 235,
+    "id_expediente": "EXP-VAL-001",
+    "reasons": [
+      "Valor de deuda ausente, no numérico o no positivo"
+    ]
+  },
+  {
+    "source_row": 242,
+    "id_expediente": "EXP-FEC-001",
+    "reasons": [
+      "Fecha de mandamiento ausente o imposible"
+    ]
+  },
+  {
+    "source_row": 253,
+    "id_expediente": "EXP-2023-0089",
+    "reasons": [
+      "Fila duplicada exacta; se conservó la primera aparición"
+    ]
+  },
+  {
+    "source_row": 261,
+    "id_expediente": "EXP-VAL-003",
+    "reasons": [
+      "Valor de deuda ausente, no numérico o no positivo"
+    ]
+  },
+  {
+    "source_row": 262,
+    "id_expediente": "EXP-2019-0001",
+    "reasons": [
+      "Identificador duplicado con datos contradictorios"
+    ]
+  },
+  {
+    "source_row": 266,
+    "id_expediente": "EXP-FUT-001",
+    "reasons": [
+      "Vigencia fiscal inválida o futura"
+    ]
+  }
+]
