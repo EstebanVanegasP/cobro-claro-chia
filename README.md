@@ -2,7 +2,7 @@
 
 Aplicación web para importar, consultar, editar y reportar los expedientes de cobro entregados en `expedientes_cobro_chia.csv`. La solución prioriza la trazabilidad: ninguna fecha, deuda, identidad o duplicado contradictorio se corrige por suposición.
 
-> Estado del entregable: aplicación, migración, semilla, pruebas y documentación terminadas. Las URL públicas se completan al publicar el repositorio y el despliegue.
+> Estado del entregable: aplicación, migración, semilla, pruebas, documentación y publicación terminadas.
 
 ## Enlaces del entregable
 
