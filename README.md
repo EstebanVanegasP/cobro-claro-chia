@@ -6,7 +6,7 @@ Aplicación web para importar, consultar, editar y reportar los expedientes de c
 
 ## Enlaces del entregable
 
-- Aplicación en Vercel: **pendiente de publicación**
+- Aplicación en Vercel: [cobro-claro-chia.vercel.app](https://cobro-claro-chia.vercel.app)
 - Repositorio público: [github.com/EstebanVanegasP/cobro-claro-chia](https://github.com/EstebanVanegasP/cobro-claro-chia)
 
 ## Alcance implementado
