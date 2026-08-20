@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useActionState } from "react";
+import type { ClipboardEvent, KeyboardEvent } from "react";
 import { AlertCircle, Save } from "lucide-react";
 import { updateExpediente, type EditState } from "@/app/expedientes/actions";
 import type { Expediente, ProcessStatus, TaxType } from "@/lib/types";
@@ -9,6 +10,15 @@ import type { Expediente, ProcessStatus, TaxType } from "@/lib/types";
 const initialState: EditState = {};
 const taxTypes: TaxType[] = ["Predial unificado", "Industria y comercio", "Vehículos automotores"];
 const statuses: ProcessStatus[] = ["Persuasivo", "Coactivo", "Archivado", "Cerrado", "Sin definir"];
+
+function preventNonNumericInput(event: KeyboardEvent<HTMLInputElement>) {
+  if (event.ctrlKey || event.metaKey || event.altKey) return;
+  if (event.key.length === 1 && !/\d/.test(event.key)) event.preventDefault();
+}
+
+function preventNonNumericPaste(event: ClipboardEvent<HTMLInputElement>) {
+  if (!/^\d*$/.test(event.clipboardData.getData("text"))) event.preventDefault();
+}
 
 export function EditForm({ row }: { row: Expediente }) {
   const [state, formAction, pending] = useActionState(updateExpediente, initialState);
@@ -32,8 +42,8 @@ export function EditForm({ row }: { row: Expediente }) {
         <legend>Datos del cobro</legend>
         <div className="form-grid">
           <label className="field"><span>Tipo de impuesto</span><select name="tipo_impuesto" defaultValue={row.tipo_impuesto}>{taxTypes.map((tax) => <option key={tax}>{tax}</option>)}</select></label>
-          <label className="field"><span>Vigencia fiscal</span><input name="vigencia_fiscal" type="number" min="1900" max="2026" defaultValue={row.vigencia_fiscal} required /></label>
-          <label className="field"><span>Valor de la deuda (COP)</span><input name="valor_deuda" type="number" min="1" step="1" defaultValue={row.valor_deuda} required /></label>
+          <label className="field"><span>Vigencia fiscal</span><input name="vigencia_fiscal" type="number" min="1900" max="2026" defaultValue={row.vigencia_fiscal} required onKeyDown={preventNonNumericInput} onPaste={preventNonNumericPaste} /></label>
+          <label className="field"><span>Valor de la deuda (COP)</span><input name="valor_deuda" type="number" min="1" step="1" defaultValue={row.valor_deuda} required onKeyDown={preventNonNumericInput} onPaste={preventNonNumericPaste} /></label>
           <label className="field"><span>Fecha de mandamiento</span><input name="fecha_mandamiento" type="date" defaultValue={row.fecha_mandamiento} required /></label>
           <label className="field"><span>Estado del proceso</span><select name="estado_proceso" defaultValue={row.estado_proceso}>{statuses.map((status) => <option key={status}>{status}</option>)}</select></label>
         </div>
